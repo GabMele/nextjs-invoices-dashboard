@@ -1,6 +1,38 @@
+// /app/layout.tsx
+
+import { Metadata } from "next";
+
 import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
+import Footer from '@/app/ui/footer';
  
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ? `https://${process.env.NEXT_PUBLIC_SITE_URL}`
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | NextQuoInvoices Demo",
+    default: "NextQuoInvoices Demo",
+  },
+  description: "Demo app by NextQuo.com: NextQuoInvoices - Manage your invoices efficiently with our modern dashboard built with Next.js.",
+  keywords: ["invoices", "dashboard", "billing", "finance", "nextjs"],
+  authors: [{ name: "Gabriele Melendugno" }],
+  metadataBase: new URL(baseUrl),
+  openGraph: {
+    title: "NextQuoInvoices Demo",
+    description: "Demo app by NextQuo.com: NextQuoInvoices - Manage your invoices efficiently with our modern dashboard",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NextQuoInvoices Demo",
+    description: "Demo app by NextQuo.com: NextQuoInvoices - Manage your invoices efficiently with our modern dashboard",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -8,7 +40,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <div className="min-h-screen flex flex-col">
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }
