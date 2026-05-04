@@ -5,7 +5,7 @@ const users = [
     id: '410544b2-4001-4271-9855-fec4b6a6442a',
     name: 'User',
     email: 'user@nextmail.com',
-    password: '123456',
+    password: '$2a$10$8jzOje5mCtY4KmO/xJl39uHNFrrIAbbpiH2XCHjDYtJLYw2vx.a0m', // bcryptjs hash for '123456'
   },
 ];
 
