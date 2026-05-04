@@ -3,6 +3,7 @@ import {
   FormattedCustomersTable,
 } from '@/app/lib/definitions';
 import { UpdateCustomer, DeleteCustomer } from '@/app/ui/shared/buttons';
+import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 export default async function CustomersTable({
   customers,
@@ -25,13 +26,19 @@ export default async function CustomersTable({
                       <div>
                         <div className="mb-2 flex items-center">
                           <div className="flex items-center gap-3">
-                            <Image
-                              src={customer.image_url}
-                              className="rounded-full"
-                              alt={`${customer.name}'s profile picture`}
-                              width={28}
-                              height={28}
-                            />
+                            {customer.image_url && customer.image_url.trim() !== '' ? (
+                              <Image
+                                src={customer.image_url}
+                                className="rounded-full"
+                                alt={`${customer.name}'s profile picture`}
+                                width={28}
+                                height={28}
+                              />
+                            ) : (
+                              <div className="flex size-7 items-center justify-center rounded-full bg-gray-200">
+                                <UserCircleIcon className="size-5 text-gray-500" />
+                              </div>
+                            )}
                             <p>{customer.name}</p>
                           </div>
                         </div>
@@ -88,13 +95,19 @@ export default async function CustomersTable({
                     >
                       <td className="whitespace-nowrap py-3 pl-6 pr-3">
                         <div className="flex items-center gap-3">
-                          <Image
-                            src={customer.image_url}
-                            className="rounded-full"
-                            alt={`${customer.name}'s profile picture`}
-                            width={28}
-                            height={28}
-                          />
+                          {customer.image_url && customer.image_url.trim() !== '' ? (
+                            <Image
+                              src={customer.image_url}
+                              className="rounded-full"
+                              alt={`${customer.name}'s profile picture`}
+                              width={28}
+                              height={28}
+                            />
+                          ) : (
+                            <div className="flex size-7 items-center justify-center rounded-full bg-gray-200">
+                              <UserCircleIcon className="size-5 text-gray-500" />
+                            </div>
+                          )}
                           <p>{customer.name}</p>
                         </div>
                       </td>
