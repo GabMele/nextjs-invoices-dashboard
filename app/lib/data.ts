@@ -17,14 +17,15 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
+    // This demonstrates how skeleton loading states work while data is being fetched.
+    // In production, you would remove this delay for better performance.
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue[]>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
 
     return data;
   } catch (error) {
@@ -34,11 +35,12 @@ export async function fetchRevenue() {
 }
 
 export async function fetchLatestInvoices() {
-
-// Artificial delay of 2 seconds
+  try {
+    // Artificial delay to demonstrate skeleton loading states.
+    // This shows how the UI displays loading placeholders while fetching data.
+    // Remove this in production for faster response times.
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-  try {
     const data = await sql<LatestInvoiceRaw[]>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
       FROM invoices
@@ -58,8 +60,12 @@ export async function fetchLatestInvoices() {
 }
 
 export async function fetchCardData() {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
   try {
+    // Artificial delay to demonstrate skeleton loading states for dashboard cards.
+    // This shows loading placeholders while fetching card statistics.
+    // Comment out or remove this delay in production.
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
     // how to initialize multiple queries in parallel with JS.

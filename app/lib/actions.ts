@@ -157,7 +157,17 @@ export async function deleteInvoice(id: string) {
 const CustomerFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   email: z.string().email('Invalid email address'),
-  image_url: z.string().url('Invalid URL').optional(),
+  image_url: z.string().optional().transform((val) => {
+    if (!val || val.trim() === '') {
+      return '';
+    }
+    try {
+      new URL(val);
+      return val;
+    } catch {
+      throw new Error('Invalid URL');
+    }
+  }),
 });
 
 const CreateCustomer = CustomerFormSchema;
@@ -181,7 +191,7 @@ export async function createCustomer(prevState: CustomerState, formData: FormDat
   try {
     await sql`
       INSERT INTO customers (name, email, image_url)
-      VALUES (${name}, ${email}, ${image_url || 'https://via.placeholder.com/28'})
+      VALUES (${name}, ${email}, ${image_url || ''})
     `;
   } catch (error) {
     return {
@@ -218,7 +228,7 @@ export async function updateCustomer(
   try {
     await sql`
       UPDATE customers
-      SET name = ${name}, email = ${email}, image_url = ${image_url || 'https://via.placeholder.com/28'}
+      SET name = ${name}, email = ${email}, image_url = ${image_url || ''}
       WHERE id = ${id}
     `;
   } catch (error) {

@@ -1,142 +1,93 @@
-import Image from 'next/image';
 import {
   FormattedCustomersTable,
 } from '@/app/lib/definitions';
-import { UpdateCustomer, DeleteCustomer } from '@/app/ui/shared/buttons';
-import { UserCircleIcon } from '@heroicons/react/24/outline';
+import { 
+  Table, 
+  TableColumn, 
+  UserInfo, 
+  Card, 
+  CardHeader, 
+  CardSection, 
+  CardContent,
+  UpdateCustomer, 
+  DeleteCustomer 
+} from '@/app/ui/shared';
 
 export default async function CustomersTable({
   customers,
 }: {
   customers: FormattedCustomersTable[];
 }) {
-  return (
-    <div className="w-full">
-      <div className="mt-6 flow-root">
-        <div className="overflow-x-auto">
-          <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden rounded-md bg-gray-50 p-2 md:pt-0">
-              <div className="md:hidden">
-                {customers?.map((customer) => (
-                  <div
-                    key={customer.id}
-                    className="mb-2 w-full rounded-md bg-white p-4"
-                  >
-                    <div className="flex items-center justify-between border-b pb-4">
-                      <div>
-                        <div className="mb-2 flex items-center">
-                          <div className="flex items-center gap-3">
-                            {customer.image_url && customer.image_url.trim() !== '' ? (
-                              <Image
-                                src={customer.image_url}
-                                className="rounded-full"
-                                alt={`${customer.name}'s profile picture`}
-                                width={28}
-                                height={28}
-                              />
-                            ) : (
-                              <div className="flex size-7 items-center justify-center rounded-full bg-gray-200">
-                                <UserCircleIcon className="size-5 text-gray-500" />
-                              </div>
-                            )}
-                            <p>{customer.name}</p>
-                          </div>
-                        </div>
-                        <p className="text-sm text-gray-500">
-                          {customer.email}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex w-full items-center justify-between border-b py-5">
-                      <div className="flex w-1/2 flex-col">
-                        <p className="text-xs">Pending</p>
-                        <p className="font-medium">{customer.total_pending}</p>
-                      </div>
-                      <div className="flex w-1/2 flex-col">
-                        <p className="text-xs">Paid</p>
-                        <p className="font-medium">{customer.total_paid}</p>
-                      </div>
-                    </div>
-                    <div className="pt-4 text-sm">
-                      <p>{customer.total_invoices} invoices</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <table className="hidden min-w-full text-gray-900 md:table">
-                <thead className="rounded-lg text-left text-sm font-normal">
-                  <tr>
-                    <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                      Name
-                    </th>
-                    <th scope="col" className="px-3 py-5 font-medium">
-                      Email
-                    </th>
-                    <th scope="col" className="px-3 py-5 font-medium">
-                      Total Invoices
-                    </th>
-                    <th scope="col" className="px-3 py-5 font-medium">
-                      Total Pending
-                    </th>
-                    <th scope="col" className="px-4 py-5 font-medium">
-                      Total Paid
-                    </th>
-                    <th scope="col" className="relative py-3 pl-6 pr-3">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
+  const columns: TableColumn<FormattedCustomersTable>[] = [
+    {
+      key: 'name',
+      header: 'Name',
+      render: (_, customer) => (
+        <UserInfo 
+          name={customer.name}
+          email={customer.email}
+          imageUrl={customer.image_url}
+        />
+      ),
+    },
+    {
+      key: 'email',
+      header: 'Email',
+    },
+    {
+      key: 'total_invoices',
+      header: 'Total Invoices',
+    },
+    {
+      key: 'total_pending',
+      header: 'Total Pending',
+    },
+    {
+      key: 'total_paid',
+      header: 'Total Paid',
+    },
+  ];
 
-                <tbody className="bg-white">
-                  {customers.map((customer) => (
-                    <tr
-                      key={customer.id}
-                      className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
-                    >
-                      <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                        <div className="flex items-center gap-3">
-                          {customer.image_url && customer.image_url.trim() !== '' ? (
-                            <Image
-                              src={customer.image_url}
-                              className="rounded-full"
-                              alt={`${customer.name}'s profile picture`}
-                              width={28}
-                              height={28}
-                            />
-                          ) : (
-                            <div className="flex size-7 items-center justify-center rounded-full bg-gray-200">
-                              <UserCircleIcon className="size-5 text-gray-500" />
-                            </div>
-                          )}
-                          <p>{customer.name}</p>
-                        </div>
-                      </td>
-                      <td className="whitespace-nowrap p-3">
-                        {customer.email}
-                      </td>
-                      <td className="whitespace-nowrap p-3">
-                        {customer.total_invoices}
-                      </td>
-                      <td className="whitespace-nowrap p-3">
-                        {customer.total_pending}
-                      </td>
-                      <td className="whitespace-nowrap p-3">
-                        {customer.total_paid}
-                      </td>
-                      <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                        <div className="flex justify-end gap-3">
-                          <UpdateCustomer id={customer.id} />
-                          <DeleteCustomer id={customer.id} />
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+  const mobileCard = (customer: FormattedCustomersTable) => (
+    <Card key={customer.id}>
+      <CardHeader>
+        <UserInfo 
+          name={customer.name}
+          email={customer.email}
+          imageUrl={customer.image_url}
+        />
+      </CardHeader>
+      <CardSection>
+        <div className="flex w-1/2 flex-col">
+          <p className="text-xs">Pending</p>
+          <p className="font-medium">{customer.total_pending}</p>
         </div>
-      </div>
-    </div>
+        <div className="flex w-1/2 flex-col">
+          <p className="text-xs">Paid</p>
+          <p className="font-medium">{customer.total_paid}</p>
+        </div>
+      </CardSection>
+      <CardContent className="pt-4 text-sm">
+        <p>{customer.total_invoices} invoices</p>
+        <div className="flex justify-end gap-3 mt-4">
+          <UpdateCustomer id={customer.id} />
+          <DeleteCustomer id={customer.id} />
+        </div>
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <Table
+      data={customers}
+      columns={columns}
+      actions={(customer) => (
+        <>
+          <UpdateCustomer id={customer.id} />
+          <DeleteCustomer id={customer.id} />
+        </>
+      )}
+      mobileCard={mobileCard}
+    />
   );
 }
