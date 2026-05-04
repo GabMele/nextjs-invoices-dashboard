@@ -71,8 +71,8 @@ function PaginationNumber({
 }: {
   page: number | string;
   href: string;
-  position?: 'first' | 'last' | 'middle' | 'single';
   isActive: boolean;
+  position?: 'first' | 'last' | 'middle' | 'single';
 }) {
   const className = clsx(
     'flex size-10 items-center justify-center text-sm border',
