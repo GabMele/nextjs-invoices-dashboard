@@ -80,7 +80,7 @@ export default function Form({ customer }: { customer: Customer }) {
             <input
               id="image_url"
               name="image_url"
-              type="url"
+              type="text"
               defaultValue={customer.image_url}
               placeholder="https://example.com/image.jpg"
               className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"

@@ -157,17 +157,7 @@ export async function deleteInvoice(id: string) {
 const CustomerFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   email: z.string().email('Invalid email address'),
-  image_url: z.string().optional().transform((val) => {
-    if (!val || val.trim() === '') {
-      return '';
-    }
-    try {
-      new URL(val);
-      return val;
-    } catch {
-      throw new Error('Invalid URL');
-    }
-  }),
+  image_url: z.string().optional(),
 });
 
 const CreateCustomer = CustomerFormSchema;
