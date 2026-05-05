@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import postgres from 'postgres';
+import bcrypt from 'bcryptjs';
  
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
@@ -30,6 +31,61 @@ export async function authenticate(
     }
     throw error;
   }
+}
+
+const SignupFormSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+});
+
+export type SignupState = {
+  errors?: {
+    name?: string[];
+    email?: string[];
+    password?: string[];
+  };
+  message?: string | null;
+};
+
+export async function signup(prevState: SignupState, formData: FormData) {
+  const validatedFields = SignupFormSchema.safeParse({
+    name: formData.get('name'),
+    email: formData.get('email'),
+    password: formData.get('password'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Sign Up.',
+    };
+  }
+
+  const { name, email, password } = validatedFields.data;
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  try {
+    // Check if user already exists
+    const existingUser = await sql`SELECT * FROM users WHERE email=${email}`;
+    if (existingUser.length > 0) {
+      return {
+        message: 'User with this email already exists.',
+      };
+    }
+
+    // Create new user
+    await sql`
+      INSERT INTO users (name, email, password)
+      VALUES (${name}, ${email}, ${hashedPassword})
+    `;
+  } catch (error) {
+    return {
+      message: 'Database Error: Failed to Sign Up.',
+    };
+  }
+
+  redirect('/login');
 }
 
 
