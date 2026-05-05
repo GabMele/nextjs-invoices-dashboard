@@ -6,7 +6,9 @@ export type User = {
   id: string;
   name: string;
   email: string;
-  password: string;
+  password?: string;  // Optional for OAuth users
+  image?: string;     // Profile picture from OAuth
+  email_verified?: Date;  // Email verification timestamp
 };
 
 export type Customer = {

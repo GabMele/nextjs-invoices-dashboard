@@ -9,10 +9,46 @@ import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import postgres from 'postgres';
-import bcrypt from 'bcryptjs';
- 
+import bcrypt from 'bcrypt';
+import { randomUUID } from 'crypto';
+
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
+export async function authenticateWithGoogle(callbackUrl: string) {
+  try {
+    await signIn('google', { redirectTo: callbackUrl });
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function authenticateWithGitHub(callbackUrl: string) {
+  try {
+    await signIn('github', { redirectTo: callbackUrl });
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function createOAuthUser(email: string, name: string, image?: string) {
+  const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+  
+  try {
+    // Check if user already exists
+    const existingUser = await sql`SELECT * FROM users WHERE email=${email}`;
+    
+    if (existingUser.length === 0) {
+      // Create new OAuth user
+      await sql`
+        INSERT INTO users (id, name, email, password, image, email_verified)
+        VALUES (${randomUUID()}, ${name || 'Unknown'}, ${email}, ${null}, ${image || null}, ${new Date()})
+      `;
+    }
+  } catch (error) {
+    console.error('Error creating OAuth user:', error);
+    throw error;
+  }
+}
 
 export async function authenticate(
   prevState: string | undefined,
@@ -76,8 +112,8 @@ export async function signup(prevState: SignupState, formData: FormData) {
 
     // Create new user
     await sql`
-      INSERT INTO users (name, email, password)
-      VALUES (${name}, ${email}, ${hashedPassword})
+      INSERT INTO users (id, name, email, password, provider)
+      VALUES (${randomUUID()}, ${name}, ${email}, ${hashedPassword}, 'email')
     `;
   } catch (error) {
     return {
