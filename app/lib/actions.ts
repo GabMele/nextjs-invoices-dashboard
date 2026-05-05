@@ -232,8 +232,9 @@ export async function updateCustomer(
 export async function deleteCustomer(id: string) {
   try {
     await sql`DELETE FROM customers WHERE id = ${id}`;
+    revalidatePath('/dashboard/customers');
   } catch (error) {
-    return { message: 'Database Error: Failed to Delete Customer.' };
+    console.error('Failed to delete customer:', error);
+    throw new Error('Database Error: Failed to delete customer.');
   }
-  revalidatePath('/dashboard/customers');
 }

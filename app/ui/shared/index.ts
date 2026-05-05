@@ -6,15 +6,7 @@ export { UserInfo } from './user-info';
 
 // Button Components
 export {
-  CreateButton,
-  UpdateButton,
-  DeleteButton,
-  CreateInvoice,
-  UpdateInvoice,
-  DeleteInvoice,
-  CreateCustomer,
-  UpdateCustomer,
-  DeleteCustomer,
+  UniversalButton,
 } from './buttons';
 
 // Navigation Components

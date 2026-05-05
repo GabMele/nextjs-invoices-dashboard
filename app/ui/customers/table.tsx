@@ -1,17 +1,16 @@
 import {
   FormattedCustomersTable,
 } from '@/app/lib/definitions';
-import { 
-  Table, 
-  TableColumn, 
-  UserInfo, 
-  Card, 
-  CardHeader, 
-  CardSection, 
+import {
+  Table,
+  TableColumn,
+  UserInfo,
+  Card,
+  CardHeader,
   CardContent,
-  UpdateCustomer, 
-  DeleteCustomer 
+  CardSection
 } from '@/app/ui/shared';
+import { UniversalButton } from '@/app/ui/shared/buttons';
 
 export default async function CustomersTable({
   customers,
@@ -70,8 +69,8 @@ export default async function CustomersTable({
       <CardContent className="pt-4 text-sm">
         <p>{customer.total_invoices} invoices</p>
         <div className="flex justify-end gap-3 mt-4">
-          <UpdateCustomer id={customer.id} />
-          <DeleteCustomer id={customer.id} />
+          <UniversalButton type="update" entity="customers" id={customer.id} />
+          <UniversalButton type="delete" entity="customers" id={customer.id} />
         </div>
       </CardContent>
     </Card>
@@ -83,8 +82,8 @@ export default async function CustomersTable({
       columns={columns}
       actions={(customer) => (
         <>
-          <UpdateCustomer id={customer.id} />
-          <DeleteCustomer id={customer.id} />
+          <UniversalButton type="update" entity="customers" id={customer.id} />
+          <UniversalButton type="delete" entity="customers" id={customer.id} />
         </>
       )}
       mobileCard={mobileCard}

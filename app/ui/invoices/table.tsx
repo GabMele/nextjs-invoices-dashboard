@@ -1,4 +1,4 @@
-import { UpdateInvoice, DeleteInvoice } from '@/app/ui/shared';
+import { UniversalButton } from '@/app/ui/shared/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
@@ -8,7 +8,8 @@ import {
   UserInfo, 
   Card, 
   CardHeader, 
-  CardContent 
+  CardContent,
+  CardSection
 } from '@/app/ui/shared';
 
 export default async function InvoicesTable({
@@ -69,8 +70,8 @@ export default async function InvoicesTable({
           <p>{formatDateToLocal(invoice.date)}</p>
         </div>
         <div className="flex justify-end gap-2">
-          <UpdateInvoice id={invoice.id} />
-          <DeleteInvoice id={invoice.id} />
+          <UniversalButton type="update" entity="invoices" id={invoice.id} />
+          <UniversalButton type="delete" entity="invoices" id={invoice.id} />
         </div>
       </CardContent>
     </Card>
@@ -82,8 +83,8 @@ export default async function InvoicesTable({
       columns={columns}
       actions={(invoice) => (
         <>
-          <UpdateInvoice id={invoice.id} />
-          <DeleteInvoice id={invoice.id} />
+          <UniversalButton type="update" entity="invoices" id={invoice.id} />
+          <UniversalButton type="delete" entity="invoices" id={invoice.id} />
         </>
       )}
       mobileCard={mobileCard}
