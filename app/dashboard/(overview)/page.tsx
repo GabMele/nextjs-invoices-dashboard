@@ -1,14 +1,11 @@
 // @app/dashboard/(overview)/page.tsx
 
-import { Card } from "@/app/ui/dashboard/cards";
 import RevenueChart from "@/app/ui/dashboard/revenue-chart";
 import LatestInvoices from "@/app/ui/dashboard/latest-invoices";
 import CardWrapper from "@/app/ui/dashboard/cards";
-import { fetchLatestInvoices, fetchCardData } from "@/app/lib/data";
 import { Suspense } from "react";
 import { CardsSkeleton, LatestInvoicesSkeleton, RevenueChartSkeleton } from "@/app/ui/skeletons";
 
-import { lusitana} from "@/app/ui/fonts";
 
 export default async function Page() {
   // const latestInvoices = await fetchLatestInvoices();
@@ -21,7 +18,7 @@ export default async function Page() {
   // } = await fetchCardData();
   return (
     <main>
-      <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
+      <h1 className="mb-4 text-xl md:text-2xl font-heading">
         Dashboard
       </h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

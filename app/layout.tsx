@@ -3,7 +3,7 @@
 import { Metadata } from "next";
 
 import '@/app/ui/global.css';
-import { inter } from '@/app/ui/fonts';
+import { nunito, robotoSlab } from '@/app/ui/fonts';
 import Footer from '@/app/ui/footer';
  
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
@@ -40,7 +40,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${nunito.className} antialiased`}>
         <div className="flex flex-col min-h-screen">
           <div className="flex-1">{children}</div>
           <Footer />

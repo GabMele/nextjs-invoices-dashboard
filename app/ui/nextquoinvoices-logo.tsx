@@ -1,5 +1,4 @@
 // import { GlobeAltIcon } from '@heroicons/react/24/outline';
-import { lusitana } from "@/app/ui/fonts";
 
 /*
 export default function NextQuoInvoicesLogo() {
@@ -30,7 +29,7 @@ export default function NextQuoInvoicesLogo() {
 export default function NextQuoInvoicesLogo() {
   return (
     <div
-      className={`${lusitana.className} flex flex-row items-center justify-center gap-3 text-white md:flex-col md:items-start md:justify-start md:gap-0`}
+      className="flex flex-row items-center justify-center gap-3 text-white md:flex-col md:items-start md:justify-start md:gap-0 font-heading"
     >
       <div className="text-4xl">NextQuo</div>
       <div className="text-4xl md:text-3xl">Invoices</div>
