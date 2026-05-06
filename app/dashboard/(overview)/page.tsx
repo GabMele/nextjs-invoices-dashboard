@@ -17,11 +17,11 @@ export default async function Page() {
   //   totalPendingInvoices,
   // } = await fetchCardData();
   return (
-    <main>
-      <h1 className="mb-4 text-xl md:text-2xl font-heading">
+    <main className="fade-in">
+      <h1 className="mb-4 text-xl md:text-2xl font-heading fade-in-up stagger-1">
         Dashboard
       </h1>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 fade-in-up stagger-2">
         {/* <Card title="Collected" value={totalPaidInvoices} type="collected" />
         <Card title="Pending" value={totalPendingInvoices} type="pending" />
         <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
@@ -37,7 +37,7 @@ export default async function Page() {
 
 
 
-      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8 fade-in-up stagger-3">
         <Suspense fallback={<RevenueChartSkeleton />}>
           <RevenueChart />
         </Suspense>

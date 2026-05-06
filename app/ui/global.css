@@ -16,3 +16,325 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* Smooth animations for specific elements */
+.fade-in, .card-hover, .btn-scale, .transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disable transitions on specific elements */
+.no-transition * {
+  transition: none !important;
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Button animations */
+.btn-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-scale:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-scale:active {
+  transform: scale(0.98);
+}
+
+/* Make button animations more obvious */
+button.btn-scale {
+  position: relative;
+  overflow: hidden;
+}
+
+button.btn-scale::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+button.btn-scale:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Enhanced action button effects */
+.btn-scale:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.btn-scale:active {
+  transform: scale(1.02) translateY(-1px);
+}
+
+/* Special effects for create buttons */
+.create:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Special effects for delete buttons */
+.btn-scale.delete:hover {
+  box-shadow: 0 25px 30px -5px rgba(239, 68, 68, 0.3), 0 15px 15px -5px rgba(239, 68, 68, 0.2);
+  background-color: #ef4444;
+  color: white;
+}
+
+/* Special effects for update buttons */
+.btn-scale.update:hover {
+  box-shadow: 0 25px 30px -5px rgba(34, 197, 94, 0.3), 0 15px 15px -5px rgba(34, 197, 94, 0.2);
+  background-color: #22c55e;
+  color: white;
+}
+
+/* Sign out button effects */
+.sign-out-btn {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  transition: all 0.3s ease;
+}
+
+.sign-out-btn:hover {
+  background-color: #dc2626;
+  color: white;
+  border: 3px solid #dc2626;
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
+  transform: scale(1.02);
+  font-weight: 600;
+}
+
+.sign-out-btn:hover .power-icon {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Slide left and fade animation */
+@keyframes slideLeftFade {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRightFade {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-left-fade {
+  animation: slideLeftFade 1s ease forwards;
+}
+
+.slide-right-fade {
+  animation: slideRightFade 1s ease forwards;
+}
+
+/* Fade in with move animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 1s ease forwards;
+}
+
+/* Pulse animation for testing */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Staggered animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+/* Table row hover effects */
+.table-row-hover {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.table-row-hover:hover {
+  background: linear-gradient(90deg, #eff6ff 0%, #f0f9ff 50%, #eff6ff 100%);
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+  border-left: 4px solid #3b82f6;
+}
+
+.table-row-hover:hover td {
+  color: #1e40af;
+  font-weight: 500;
+}
+
+.table-row-hover:hover td:first-child {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* Mobile card hover effects */
+.mobile-card-hover {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mobile-card-hover:hover {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.15), 0 10px 10px -5px rgba(59, 130, 246, 0.1);
+  border-top: 3px solid #3b82f6;
+}
+
+/* Dashboard card hover effects */
+.dashboard-card {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-card.collected {
+  background-color: #dcfce7;
+}
+
+.dashboard-card.pending {
+  background-color: #fef3c7;
+}
+
+.dashboard-card.invoices {
+  background-color: #dbeafe;
+}
+
+.dashboard-card.customers {
+  background-color: #f3e8ff;
+}
+
+.dashboard-card.invoices:hover {
+  border-left: 4px solid #3b82f6;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.dashboard-card.customers:hover {
+  border-left: 4px solid #a855f7;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.dashboard-card:hover .card-value {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.dashboard-card:hover .card-icon {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Chart hover effects */
+.chart-container {
+  transition: all 0.3s ease;
+}
+
+.chart-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.chart-bar {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.chart-bar:hover {
+  opacity: 0.8;
+  transform: scaleY(1.05);
+  filter: brightness(1.1);
+}
+
+.chart-bar:hover::after {
+  content: attr(data-value);
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 10;
+}

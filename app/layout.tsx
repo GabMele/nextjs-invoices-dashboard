@@ -35,16 +35,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} antialiased`}>
-        <div className="flex flex-col min-h-screen">
-          <div className="flex-1">{children}</div>
-          <Footer />
-        </div>
+      <body className={`${nunito.className} antialiased bg-gray-50`}>
+        {children}
       </body>
     </html>
   );

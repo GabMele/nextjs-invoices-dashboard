@@ -21,7 +21,7 @@ export default async function RevenueChart() {
   }
 
   return (
-    <div className="w-full md:col-span-4">
+    <div className="w-full md:col-span-4 chart-container">
       <h2 className="mb-4 text-xl md:text-2xl font-heading">
         Recent Revenue
       </h2>
@@ -41,7 +41,8 @@ export default async function RevenueChart() {
           {revenue.map((month) => (
             <div key={month.month} className="flex flex-col items-center gap-2">
               <div
-                className="w-full rounded-md bg-blue-300"
+                className="w-full rounded-md bg-blue-300 chart-bar relative"
+                data-value={`$${month.revenue}`}
                 style={{
                   height: `${(chartHeight / topLabel) * month.revenue}px`,
                 }}

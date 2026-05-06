@@ -51,16 +51,14 @@ export default async function InvoicesTable({
   ];
 
   const mobileCard = (invoice: typeof invoices[0]) => (
-    <Card key={invoice.id}>
+    <Card className="mb-4 mobile-card-hover" key={invoice.id}>
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <UserInfo 
-            name={invoice.name}
-            email={invoice.email}
-            imageUrl={invoice.image_url}
-          />
-          <InvoiceStatus status={invoice.status} />
-        </div>
+        <UserInfo 
+          name={invoice.name}
+          email={invoice.email}
+          imageUrl={invoice.image_url}
+        />
+        <InvoiceStatus status={invoice.status} />
       </CardHeader>
       <CardContent className="flex w-full items-center justify-between pt-4">
         <div>

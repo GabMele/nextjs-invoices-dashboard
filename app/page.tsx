@@ -8,41 +8,41 @@ export default function Page() {
   return (
     <main className="flex min-h-screen flex-col p-6">
       {/* <div className={styles.shape} /> */}
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
+      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52 slide-left-fade">
         <NextQuoInvoicesLogo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
+        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20 fade-in-up stagger-1">
           <p
             className="text-xl text-gray-800 md:text-3xl md:leading-normal font-heading"
           >
             <strong>Welcome to NextQuoInvoices.</strong> This is the example for the{" "}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
+            <a href="https://nextjs.org/learn/" className="text-blue-500 hover:text-blue-600 transition-colors">
               Next.js Learn Course
             </a>
             , brought to you by Vercel.
           </p>
           <Link
             href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-blue-400 hover:shadow-lg btn-scale md:text-base"
           >
             <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
           </Link>
         </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
+        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12 fade-in-up stagger-2">
           <Image
             src="/hero-desktop.png"
             width={1000}
             height={760}
-            className="hidden md:block"
-            alt="Screenshots of the dashboard project showing desktop version"
+            className="hidden md:block rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            alt=""
           />
           <Image
-            src="/hero-desktop.png"
+            src="/hero-mobile.png"
             width={560}
             height={620}
-            className="block md:hidden"
-            alt="Screenshots of the dashboard project showing desktop version"
+            className="block md:hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            alt=""
           />
         </div>
       </div>

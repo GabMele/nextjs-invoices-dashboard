@@ -25,12 +25,10 @@ export default async function Page(props: {
   const totalPages = await fetchCustomersPages(query);
 
   return (
-    <div className="w-full">
-      <Breadcrumbs
-        breadcrumbs={[
-          { label: 'Customers', href: '/dashboard/customers', active: true },
-        ]}
-      />
+    <div className="w-full fade-in">
+      <div className="flex w-full items-center justify-between fade-in-up stagger-1">
+        <h1 className="mb-4 mt-2 text-2xl md:text-3xl font-heading px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-200 rounded-lg text-purple-800">Customers</h1>
+      </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search customers..." />
         <UniversalButton type="create" entity="customers" />
@@ -38,7 +36,7 @@ export default async function Page(props: {
       <Suspense key={query + currentPage} fallback={<CustomersTableSkeleton />}>
         <CustomersTable customers={await fetchFilteredCustomers(query, currentPage)} />
       </Suspense>
-      <div className="mt-5 flex w-full justify-center">
+      <div className="mt-5 flex w-full justify-center fade-in-up stagger-3">
         <Pagination totalPages={totalPages} />
       </div>
     </div>
