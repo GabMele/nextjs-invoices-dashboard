@@ -34,7 +34,7 @@ export default async function Page(props: {
           <div className="flex-[3] min-w-0">
             <Search placeholder="Search invoices..." />
           </div>
-          <div className="flex-[1] min-w-[120px] max-w-[120px]">
+          <div className="flex-[1] min-w-[140px]">
             <UniversalButton type="create" entity="invoices" />
           </div>
         </div>
