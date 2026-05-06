@@ -48,7 +48,7 @@ export default async function CustomersTable({
   ];
 
   const mobileCard = (customer: FormattedCustomersTable) => (
-    <Card key={customer.id}>
+    <Card key={customer.id} className="customer-card-hover">
       <CardHeader>
         <UserInfo 
           name={customer.name}
@@ -67,10 +67,12 @@ export default async function CustomersTable({
         </div>
       </CardSection>
       <CardContent className="pt-4 text-sm">
-        <p>{customer.total_invoices} invoices</p>
-        <div className="flex justify-end gap-3 mt-4">
-          <UniversalButton type="update" entity="customers" id={customer.id} />
-          <UniversalButton type="delete" entity="customers" id={customer.id} />
+        <div className="flex items-center justify-between">
+          <p>{customer.total_invoices} invoices</p>
+          <div className="flex gap-2">
+            <UniversalButton type="update" entity="customers" id={customer.id} />
+            <UniversalButton type="delete" entity="customers" id={customer.id} />
+          </div>
         </div>
       </CardContent>
     </Card>

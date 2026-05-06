@@ -21,18 +21,26 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   }
 
   return (
-    <main>
-      <Breadcrumbs
-        breadcrumbs={[
-          { label: "Invoices", href: "/dashboard/invoices" },
-          {
-            label: "Edit Invoice",
-            href: `/dashboard/invoices/${id}/edit`,
-            active: true,
-          },
-        ]}
-      />
-      <Form invoice={invoice} customers={customers} />
-    </main>
+    <div className="w-full fade-in">
+      <div className="px-4 max-w-[950px] mx-auto">
+        <div className="flex w-full items-center justify-between fade-in-up stagger-1">
+          <div className="mb-4 mt-2 text-3xl md:text-4xl font-heading px-4 py-2 bg-gradient-to-r from-blue-100 to-blue-200 rounded-lg text-blue-800">
+            <Breadcrumbs
+              breadcrumbs={[
+                { label: "Invoices", href: "/dashboard/invoices" },
+                {
+                  label: "Edit Invoice",
+                  href: `/dashboard/invoices/${id}/edit`,
+                  active: true,
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+      <main className="px-4 max-w-[950px] mx-auto">
+        <Form invoice={invoice} customers={customers} />
+      </main>
+    </div>
   );
 }

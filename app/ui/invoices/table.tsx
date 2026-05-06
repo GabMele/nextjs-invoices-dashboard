@@ -62,7 +62,7 @@ export default async function InvoicesTable({
   ];
 
   const mobileCard = (invoice: typeof invoices[0]) => (
-    <Card className="mb-4 mobile-card-hover" key={invoice.id}>
+    <Card className="invoice-card-hover" key={invoice.id}>
       <CardHeader>
         <UserInfo 
           name={invoice.name}

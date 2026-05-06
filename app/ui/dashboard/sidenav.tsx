@@ -7,7 +7,7 @@ import { signOut } from "@/auth";
 
 export default function SideNav() {
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2">
+    <div className="hidden md:flex flex-none md:w-64 overflow-hidden flex h-full flex-col px-3 py-4 md:px-2">
       <Link
         className="mb-12 p-4 flex justify-center rounded-md bg-blue-600 md:justify-start"
         href="/"

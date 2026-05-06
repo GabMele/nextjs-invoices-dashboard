@@ -35,10 +35,10 @@ export function Table<T extends { id: string | number }>({
     <div className={`w-full ${className}`}>
       <div className="mt-6 flow-root">
         <div className="overflow-x-auto">
-          <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden rounded-md bg-gray-50 p-2 md:pt-0">
+          <div className="inline-block min-w-full align-middle w-full">
+            <div className="overflow-visible rounded-md bg-gray-50 md:bg-gray-50 bg-inherit">
               {/* Mobile View */}
-              <div className="md:hidden">
+              <div className="md:hidden space-y-8">
                 {data?.map((item) => 
                   mobileCard ? mobileCard(item) : null
                 )}
