@@ -16,11 +16,18 @@ export default function Page() {
           <p
             className="text-xl text-gray-800 md:text-3xl md:leading-normal font-heading"
           >
-            <strong>Welcome to NextQuoInvoices.</strong> This is the example for the{" "}
+            <strong>Welcome to NextQuoInvoices.</strong>
+          </p>
+          <p className="text-base text-gray-600 md:text-lg">
+            This is a demo app to test and show opportunities led by{" "}
+            <a href="https://nextjs.org/learn/" className="text-blue-500 hover:text-blue-600 transition-colors">
+              Next.js
+            </a>
+            {" "}featuring basic invoice management. The core data management is based on the demo app proposed by the{" "}
             <a href="https://nextjs.org/learn/" className="text-blue-500 hover:text-blue-600 transition-colors">
               Next.js Learn Course
             </a>
-            , brought to you by Vercel.
+            .
           </p>
           <Link
             href="/login"

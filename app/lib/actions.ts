@@ -15,19 +15,11 @@ import { randomUUID } from 'crypto';
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 export async function authenticateWithGoogle(callbackUrl: string) {
-  try {
-    await signIn('google', { redirectTo: callbackUrl });
-  } catch (error) {
-    throw error;
-  }
+  await signIn('google', { redirectTo: callbackUrl });
 }
 
 export async function authenticateWithGitHub(callbackUrl: string) {
-  try {
-    await signIn('github', { redirectTo: callbackUrl });
-  } catch (error) {
-    throw error;
-  }
+  await signIn('github', { redirectTo: callbackUrl });
 }
 
 export async function createOAuthUser(email: string, name: string, image?: string) {
@@ -251,6 +243,20 @@ export async function updateInvoiceAmount(id: string, amount: number) {
     `;
   } catch (error) {
     return { message: 'Database Error: Failed to Update Invoice Amount.' };
+  }
+
+  revalidatePath('/dashboard/invoices');
+}
+
+export async function updateInvoiceStatus(id: string, status: string) {
+  try {
+    await sql`
+      UPDATE invoices
+      SET status = ${status}
+      WHERE id = ${id}
+    `;
+  } catch (error) {
+    return { message: 'Database Error: Failed to Update Invoice Status.' };
   }
 
   revalidatePath('/dashboard/invoices');

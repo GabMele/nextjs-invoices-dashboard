@@ -18,32 +18,29 @@ export default async function Page() {
   // } = await fetchCardData();
   return (
     <main className="fade-in">
-      <h1 className="mb-4 text-xl md:text-2xl font-heading fade-in-up stagger-1">
+      <h1 className="mb-8 text-xl md:text-2xl font-heading fade-in-up stagger-1">
         Dashboard
       </h1>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 fade-in-up stagger-2">
-        {/* <Card title="Collected" value={totalPaidInvoices} type="collected" />
-        <Card title="Pending" value={totalPendingInvoices} type="pending" />
-        <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
-        <Card title="Total Customers" value={numberOfCustomers} type="customers"
-        /> */}
-
-        <Suspense fallback={<CardsSkeleton />}>
-          <CardWrapper />
-        </Suspense>
-
+      
+      {/* Cards Section */}
+      <div className="bg-gray-50 rounded-xl p-6 mb-8 fade-in-up stagger-2">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <Suspense fallback={<CardsSkeleton />}>
+            <CardWrapper />
+          </Suspense>
+        </div>
       </div>
 
-
-
-
-      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8 fade-in-up stagger-3">
-        <Suspense fallback={<RevenueChartSkeleton />}>
-          <RevenueChart />
-        </Suspense>
-        <Suspense fallback={<LatestInvoicesSkeleton />}>
-          <LatestInvoices />
-        </Suspense>
+      {/* Charts and Latest Invoices Section */}
+      <div className="bg-gray-50 rounded-xl p-6 fade-in-up stagger-3">
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-4 lg:grid-cols-8">
+          <Suspense fallback={<RevenueChartSkeleton />}>
+            <RevenueChart />
+          </Suspense>
+          <Suspense fallback={<LatestInvoicesSkeleton />}>
+            <LatestInvoices />
+          </Suspense>
+        </div>
       </div>
     </main>
   );

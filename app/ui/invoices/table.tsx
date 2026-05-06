@@ -1,6 +1,6 @@
 import { UniversalButton } from '@/app/ui/shared/buttons';
-import InvoiceStatus from '@/app/ui/invoices/status';
 import InlineAmountEditor from '@/app/ui/invoices/inline-amount-editor';
+import InlineStatusEditor from '@/app/ui/invoices/inline-status-editor';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 import { 
@@ -52,7 +52,12 @@ export default async function InvoicesTable({
     {
       key: 'status',
       header: 'Status',
-      render: (value) => <InvoiceStatus status={String(value)} />,
+      render: (_, invoice) => (
+        <InlineStatusEditor 
+          invoiceId={invoice.id} 
+          status={invoice.status} 
+        />
+      ),
     },
   ];
 
@@ -64,7 +69,10 @@ export default async function InvoicesTable({
           email={invoice.email}
           imageUrl={invoice.image_url}
         />
-        <InvoiceStatus status={invoice.status} />
+        <InlineStatusEditor 
+          invoiceId={invoice.id} 
+          status={invoice.status} 
+        />
       </CardHeader>
       <CardContent className="flex w-full items-center justify-between pt-4">
         <div>
