@@ -15,7 +15,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
       <div className="flex flex-col md:flex-row md:overflow-hidden flex-1">
         {/* Desktop Sidebar - Hidden on Mobile */}
         <SideNav />
-        <div className="flex-1 flex flex-col md:overflow-y-auto relative pt-16 md:pt-0 md:bg-gray-50 bg-gray-100">
+        <div className="flex-1 flex flex-col md:overflow-y-auto relative pt-16 md:pt-0" data-main-content>
           {/* User Badge - Right Upper Corner */}
           {session?.user && (
             <div className="absolute top-6 right-6 z-50 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">

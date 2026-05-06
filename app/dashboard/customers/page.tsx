@@ -25,7 +25,7 @@ export default async function Page(props: {
   const totalPages = await fetchCustomersPages(query);
 
   return (
-    <div className="w-full fade-in">
+    <div className="min-h-screen bg-gray-100 md:bg-gray-50 fade-in">
       <div className="px-4 max-w-[950px] mx-auto">
         <div className="flex w-full items-center justify-between fade-in-up stagger-1">
           <h1 className="mb-4 mt-2 text-3xl md:text-4xl font-heading px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-200 rounded-lg text-purple-800">Customers</h1>

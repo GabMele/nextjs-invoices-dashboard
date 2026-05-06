@@ -17,9 +17,8 @@ export default async function Page() {
   //   totalPendingInvoices,
   // } = await fetchCardData();
   return (
-    <div className="w-full fade-in">
-      <div className="fixed inset-0 bg-white -z-10"></div>
-      <div className="px-4 max-w-[1000px] mx-auto relative z-10">
+    <div className="min-h-screen bg-white fade-in">
+      <div className="px-4 max-w-[1000px] mx-auto">
         <div className="flex w-full items-center justify-between fade-in-up stagger-1">
           <h1 className="mb-8 mt-2 text-3xl md:text-4xl font-heading px-4 py-2 bg-gradient-to-r from-green-100 to-green-200 rounded-lg text-green-800">Dashboard</h1>
         </div>

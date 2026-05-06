@@ -276,6 +276,11 @@ button.btn-scale:hover::before {
   border: 1px solid #a855f7;
 }
 
+/* Home dashboard white background override */
+[data-page="home"] {
+  background-color: white !important;
+}
+
 /* Dashboard card hover effects */
 .dashboard-card {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
