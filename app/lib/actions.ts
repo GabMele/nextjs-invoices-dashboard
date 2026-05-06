@@ -240,6 +240,22 @@ export async function updateInvoice(
   redirect('/dashboard/invoices');
 }
 
+export async function updateInvoiceAmount(id: string, amount: number) {
+  const amountInCents = Math.round(amount * 100);
+  
+  try {
+    await sql`
+      UPDATE invoices
+      SET amount = ${amountInCents}
+      WHERE id = ${id}
+    `;
+  } catch (error) {
+    return { message: 'Database Error: Failed to Update Invoice Amount.' };
+  }
+
+  revalidatePath('/dashboard/invoices');
+}
+
 export async function deleteInvoice(id: string) {
   await sql`DELETE FROM invoices WHERE id = ${id}`;
   revalidatePath('/dashboard/invoices');

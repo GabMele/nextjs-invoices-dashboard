@@ -1,5 +1,6 @@
 import { UniversalButton } from '@/app/ui/shared/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
+import InlineAmountEditor from '@/app/ui/invoices/inline-amount-editor';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 import { 
@@ -36,7 +37,12 @@ export default async function InvoicesTable({
     {
       key: 'amount',
       header: 'Amount',
-      render: (value) => formatCurrency(Number(value)),
+      render: (_, invoice) => (
+        <InlineAmountEditor 
+          invoiceId={invoice.id} 
+          amount={Number(invoice.amount)} 
+        />
+      ),
     },
     {
       key: 'date',
@@ -63,7 +69,11 @@ export default async function InvoicesTable({
       <CardContent className="flex w-full items-center justify-between pt-4">
         <div>
           <p className="text-xl font-medium">
-            {formatCurrency(invoice.amount)}
+            <InlineAmountEditor 
+              invoiceId={invoice.id} 
+              amount={invoice.amount} 
+              className="text-xl font-medium"
+            />
           </p>
           <p>{formatDateToLocal(invoice.date)}</p>
         </div>

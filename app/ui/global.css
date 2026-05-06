@@ -229,17 +229,14 @@ button.btn-scale:hover::before {
 .table-row-hover:hover {
   background: linear-gradient(90deg, #eff6ff 0%, #f0f9ff 50%, #eff6ff 100%);
   box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
-  border-left: 4px solid #3b82f6;
 }
 
 .table-row-hover:hover td {
   color: #1e40af;
-  font-weight: 500;
 }
 
 .table-row-hover:hover td:first-child {
   color: #1d4ed8;
-  font-weight: 600;
 }
 
 /* Mobile card hover effects */
